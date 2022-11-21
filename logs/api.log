@@ -1,0 +1,419 @@
+INFO     2022-11-21 17:20:10.030 | uvicorn.server:serve | Started server process [17916]
+INFO     2022-11-21 17:20:10.031 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 17:20:10.031 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 17:21:57.892 | inventory.routers.products:get_single_product | Fetching product with id : df
+ERROR    2022-11-21 17:21:57.894 | uvicorn.protocols.http.httptools_impl:run_asgi | Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.10/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               |     |   -> 4
+               |     -> 7
+               -> <function _main at 0x7fbe0d2ce950>
+  File "/usr/lib/python3.10/multiprocessing/spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+           |    |          -> 4
+           |    -> <function BaseProcess._bootstrap at 0x7fbe0d42dbd0>
+           -> <SpawnProcess name='SpawnProcess-1' parent=17914 started>
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    |    -> <function BaseProcess.run at 0x7fbe0d42d240>
+    -> <SpawnProcess name='SpawnProcess-1' parent=17914 started>
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    |    |        |    |        |    -> {'config': <uvicorn.config.Config object at 0x7fbe0d2d6d40>, 'target': <bound method Server.run of <uvicorn.server.Server obj...
+    |    |        |    |        -> <SpawnProcess name='SpawnProcess-1' parent=17914 started>
+    |    |        |    -> ()
+    |    |        -> <SpawnProcess name='SpawnProcess-1' parent=17914 started>
+    |    -> <function subprocess_started at 0x7fbe0c56b2e0>
+    -> <SpawnProcess name='SpawnProcess-1' parent=17914 started>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+    |              -> [<socket.socket fd=3, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 8000)>]
+    -> <bound method Server.run of <uvicorn.server.Server object at 0x7fbe0d2d6da0>>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/uvicorn/server.py", line 60, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           |       |   |    |             -> [<socket.socket fd=3, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 8000)>]
+           |       |   |    -> <function Server.serve at 0x7fbe0c56a830>
+           |       |   -> <uvicorn.server.Server object at 0x7fbe0d2d6da0>
+           |       -> <function run at 0x7fbe0d2d9bd0>
+           -> <module 'asyncio' from '/usr/lib/python3.10/asyncio/__init__.py'>
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           |    |                  -> <coroutine object Server.serve at 0x7fbe0c442730>
+           |    -> <method 'run_until_complete' of 'uvloop.loop.Loop' objects>
+           -> <uvloop.Loop running=True closed=False debug=False>
+> File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/uvicorn/protocols/http/httptools_impl.py", line 419, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   -> <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7fbe0c4e64a0>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+                 |    |   |      |        -> <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b08da...
+                 |    |   |      -> <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b0...
+                 |    |   -> {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 |    -> <fastapi.applications.FastAPI object at 0x7fbe0c146ad0>
+                 -> <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7fbe0c4e64a0>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/fastapi/applications.py", line 261, in __call__
+    await super().__call__(scope, receive, send)
+                           |      |        -> <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b08da...
+                           |      -> <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b0...
+                           -> {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          |    |                |      |        -> <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b08da...
+          |    |                |      -> <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b0...
+          |    |                -> {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          |    -> <starlette.middleware.errors.ServerErrorMiddleware object at 0x7fbe0b071780>
+          -> <fastapi.applications.FastAPI object at 0x7fbe0c146ad0>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/middleware/errors.py", line 181, in __call__
+    raise exc
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/middleware/errors.py", line 159, in __call__
+    await self.app(scope, receive, _send)
+          |    |   |      |        -> <function ServerErrorMiddleware.__call__.<locals>._send at 0x7fbe0aeec280>
+          |    |   |      -> <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b0...
+          |    |   -> {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          |    -> <starlette.middleware.cors.CORSMiddleware object at 0x7fbe0b072290>
+          -> <starlette.middleware.errors.ServerErrorMiddleware object at 0x7fbe0b071780>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/middleware/cors.py", line 84, in __call__
+    await self.app(scope, receive, send)
+          |    |   |      |        -> <function ServerErrorMiddleware.__call__.<locals>._send at 0x7fbe0aeec280>
+          |    |   |      -> <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b0...
+          |    |   -> {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          |    -> <starlette.exceptions.ExceptionMiddleware object at 0x7fbe0b072260>
+          -> <starlette.middleware.cors.CORSMiddleware object at 0x7fbe0b072290>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/exceptions.py", line 82, in __call__
+    raise exc
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/exceptions.py", line 71, in __call__
+    await self.app(scope, receive, sender)
+          |    |   |      |        -> <function ExceptionMiddleware.__call__.<locals>.sender at 0x7fbe0aeeda20>
+          |    |   |      -> <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b0...
+          |    |   -> {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          |    -> <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7fbe0b072170>
+          -> <starlette.exceptions.ExceptionMiddleware object at 0x7fbe0b072260>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          |    |   |      |        -> <function ExceptionMiddleware.__call__.<locals>.sender at 0x7fbe0aeeda20>
+          |    |   |      -> <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b0...
+          |    |   -> {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          |    -> <fastapi.routing.APIRouter object at 0x7fbe0c1469e0>
+          -> <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7fbe0b072170>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/routing.py", line 656, in __call__
+    await route.handle(scope, receive, send)
+          |     |      |      |        -> <function ExceptionMiddleware.__call__.<locals>.sender at 0x7fbe0aeeda20>
+          |     |      |      -> <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b0...
+          |     |      -> {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          |     -> <function Route.handle at 0x7fbe0b779240>
+          -> <fastapi.routing.APIRoute object at 0x7fbe0b0707f0>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/routing.py", line 259, in handle
+    await self.app(scope, receive, send)
+          |    |   |      |        -> <function ExceptionMiddleware.__call__.<locals>.sender at 0x7fbe0aeeda20>
+          |    |   |      -> <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7fbe0b0...
+          |    |   -> {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          |    -> <function request_response.<locals>.app at 0x7fbe0aeeeb00>
+          -> <fastapi.routing.APIRoute object at 0x7fbe0b0707f0>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/routing.py", line 61, in app
+    response = await func(request)
+                     |    -> <starlette.requests.Request object at 0x7fbe0b08e620>
+                     -> <function get_request_handler.<locals>.app at 0x7fbe0aeeea70>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/fastapi/routing.py", line 227, in app
+    raw_response = await run_endpoint_function(
+                         -> <function run_endpoint_function at 0x7fbe0b779ea0>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/fastapi/routing.py", line 162, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+                 |                 |         |       -> {'self': <inventory.routers.products.ProductsAPI object at 0x7fbe0b08edd0>, 'prod_id': 'df'}
+                 |                 |         -> <function ProductsAPI.get_product_details at 0x7fbe0aeedb40>
+                 |                 -> <fastapi.dependencies.models.Dependant object at 0x7fbe0b072050>
+                 -> <function run_in_threadpool at 0x7fbe0bffb520>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/starlette/concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+                 |     |         |        |      -> (functools.partial(<function ProductsAPI.get_product_details at 0x7fbe0aeedb40>, self=<inventory.routers.products.ProductsAPI...
+                 |     |         |        -> <built-in method run of _contextvars.Context object at 0x7fbe0aefe8c0>
+                 |     |         -> <function run_sync at 0x7fbe0c5ce830>
+                 |     -> <module 'anyio.to_thread' from '/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.1...
+                 -> <module 'anyio' from '/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-pac...
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/anyio/to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+                 -> <function get_asynclib at 0x7fbe0c5ce290>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+                 -> <Future finished exception=NotFoundError()>
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+             |       |   |      -> (functools.partial(<function ProductsAPI.get_product_details at 0x7fbe0aeedb40>, self=<inventory.routers.products.ProductsAPI...
+             |       |   -> <built-in method run of _contextvars.Context object at 0x7fbe0aefe8c0>
+             |       -> <method 'run' of '_contextvars.Context' objects>
+             -> <_contextvars.Context object at 0x7fbe0b168b40>
+
+  File "/home/gurudas/PycharmProjects/fastapi-microservices/./inventory/routers/products.py", line 21, in get_product_details
+    return self.get_single_product(pk=prod_id)
+           |    |                     -> 'df'
+           |    -> <function ProductsAPI.get_single_product at 0x7fbe0aeedc60>
+           -> <inventory.routers.products.ProductsAPI object at 0x7fbe0b08edd0>
+
+  File "/home/gurudas/PycharmProjects/fastapi-microservices/./inventory/routers/products.py", line 16, in get_single_product
+    product = Product.get(pk)
+              |       |   -> 'df'
+              |       -> <classmethod(<function HashModel.get at 0x7fbe0b424e50>)>
+              -> <class 'inventory.models.Product'>
+
+  File "/home/gurudas/.cache/pypoetry/virtualenvs/fastapi-microservices-R-kCOp08-py3.10/lib/python3.10/site-packages/redis_om/model/model.py", line 1326, in get
+    raise NotFoundError
+          -> <class 'redis_om.model.model.NotFoundError'>
+
+redis_om.model.model.NotFoundError
+
+
+INFO     2022-11-21 17:23:00.340 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 17:23:00.441 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 17:23:00.442 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 17:23:00.442 | uvicorn.server:serve | Finished server process [17916]
+INFO     2022-11-21 17:33:42.757 | uvicorn.server:serve | Started server process [18837]
+INFO     2022-11-21 17:33:42.757 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 17:33:42.758 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 17:34:04.942 | inventory.routers.products:get_single_product | Fetching product with id : 01GJ5HD446S7104SBMY1JWCJF7
+INFO     2022-11-21 17:34:04.943 | inventory.routers.products:get_single_product | Fetching product with id : 01GJ5FQX7MJNM6TNQJHVTHF5YV
+INFO     2022-11-21 17:34:14.452 | inventory.routers.products:get_single_product | Fetching product with id : g
+INFO     2022-11-21 17:34:14.453 | inventory.routers.products:get_single_product | Unable to fetch product details : 
+INFO     2022-11-21 17:35:08.341 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 17:35:08.442 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 17:35:08.444 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 17:35:08.446 | uvicorn.server:serve | Finished server process [18837]
+INFO     2022-11-21 17:35:09.019 | uvicorn.server:serve | Started server process [18877]
+INFO     2022-11-21 17:35:09.020 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 17:35:09.020 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 17:37:23.135 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 17:37:23.236 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 17:37:23.237 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 17:37:23.237 | uvicorn.server:serve | Finished server process [18877]
+INFO     2022-11-21 17:37:23.949 | uvicorn.server:serve | Started server process [18944]
+INFO     2022-11-21 17:37:23.949 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 17:37:23.950 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 17:37:35.032 | inventory.routers.products:get_single_product | Fetching product with id : w
+INFO     2022-11-21 17:37:35.034 | inventory.routers.products:get_single_product | Unable to fetch product details : 
+INFO     2022-11-21 17:39:58.422 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 17:39:58.524 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 17:39:58.526 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 17:39:58.528 | uvicorn.server:serve | Finished server process [18944]
+INFO     2022-11-21 17:40:46.218 | uvicorn.server:serve | Started server process [19049]
+INFO     2022-11-21 17:40:46.219 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 17:40:46.219 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 17:41:33.340 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 17:41:33.441 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 17:41:33.443 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 17:41:33.445 | uvicorn.server:serve | Finished server process [19049]
+INFO     2022-11-21 17:41:34.041 | uvicorn.server:serve | Started server process [19071]
+INFO     2022-11-21 17:41:34.041 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 17:41:34.042 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 17:46:33.507 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 17:46:33.609 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 17:46:33.611 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 17:46:33.613 | uvicorn.server:serve | Finished server process [19071]
+INFO     2022-11-21 17:46:34.275 | uvicorn.server:serve | Started server process [19314]
+INFO     2022-11-21 17:46:34.275 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 17:46:34.276 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 17:51:08.356 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 17:51:08.458 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 17:51:08.460 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 17:51:08.462 | uvicorn.server:serve | Finished server process [19314]
+INFO     2022-11-21 17:51:09.120 | uvicorn.server:serve | Started server process [19442]
+INFO     2022-11-21 17:51:09.120 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 17:51:09.121 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 17:53:28.860 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 17:53:28.961 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 17:53:28.963 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 17:53:28.966 | uvicorn.server:serve | Finished server process [19442]
+INFO     2022-11-21 17:53:29.632 | uvicorn.server:serve | Started server process [19504]
+INFO     2022-11-21 17:53:29.632 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 17:53:29.633 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:01:15.956 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:01:16.057 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:01:16.058 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:01:16.058 | uvicorn.server:serve | Finished server process [19504]
+INFO     2022-11-21 18:01:16.750 | uvicorn.server:serve | Started server process [19722]
+INFO     2022-11-21 18:01:16.750 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:01:16.751 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:01:49.663 | uvicorn.server:serve | Started server process [19735]
+INFO     2022-11-21 18:01:49.663 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:01:49.663 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:05:33.511 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:05:33.579 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:05:33.612 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:05:33.613 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:05:33.613 | uvicorn.server:serve | Finished server process [19722]
+INFO     2022-11-21 18:05:33.680 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:05:33.681 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:05:33.681 | uvicorn.server:serve | Finished server process [19735]
+INFO     2022-11-21 18:05:34.501 | uvicorn.server:serve | Started server process [19837]
+INFO     2022-11-21 18:05:34.502 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:05:34.502 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:05:34.545 | uvicorn.server:serve | Started server process [19836]
+INFO     2022-11-21 18:05:34.545 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:05:34.546 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:05:35.507 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:05:35.550 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:05:35.609 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:05:35.610 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:05:35.611 | uvicorn.server:serve | Finished server process [19837]
+INFO     2022-11-21 18:05:35.654 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:05:35.658 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:05:35.661 | uvicorn.server:serve | Finished server process [19836]
+INFO     2022-11-21 18:05:36.251 | uvicorn.server:serve | Started server process [19842]
+INFO     2022-11-21 18:05:36.252 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:05:36.252 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:05:36.305 | uvicorn.server:serve | Started server process [19841]
+INFO     2022-11-21 18:05:36.305 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:05:36.306 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:09:27.028 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:09:27.097 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:09:27.130 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:09:27.133 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:09:27.135 | uvicorn.server:serve | Finished server process [19842]
+INFO     2022-11-21 18:09:27.199 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:09:27.200 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:09:27.200 | uvicorn.server:serve | Finished server process [19841]
+INFO     2022-11-21 18:09:27.724 | uvicorn.server:serve | Started server process [19966]
+INFO     2022-11-21 18:09:27.724 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:09:27.725 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:09:27.803 | uvicorn.server:serve | Started server process [19967]
+INFO     2022-11-21 18:09:27.804 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:09:27.804 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:10:44.383 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:10:44.388 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:10:44.483 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:10:44.484 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:10:44.484 | uvicorn.server:serve | Finished server process [19967]
+INFO     2022-11-21 18:10:44.489 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:10:44.489 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:10:44.490 | uvicorn.server:serve | Finished server process [19966]
+INFO     2022-11-21 18:10:45.178 | uvicorn.server:serve | Started server process [20003]
+INFO     2022-11-21 18:10:45.178 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:10:45.178 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:10:45.246 | uvicorn.server:serve | Started server process [20004]
+INFO     2022-11-21 18:10:45.246 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:10:45.246 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:11:48.272 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:11:48.300 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:11:48.372 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:11:48.373 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:11:48.373 | uvicorn.server:serve | Finished server process [20004]
+INFO     2022-11-21 18:11:48.400 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:11:48.402 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:11:48.402 | uvicorn.server:serve | Finished server process [20003]
+INFO     2022-11-21 18:11:49.036 | uvicorn.server:serve | Started server process [20047]
+INFO     2022-11-21 18:11:49.037 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:11:49.037 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:11:49.119 | uvicorn.server:serve | Started server process [20048]
+INFO     2022-11-21 18:11:49.119 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:11:49.120 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:12:32.805 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:12:32.825 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:12:32.906 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:12:32.907 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:12:32.907 | uvicorn.server:serve | Finished server process [20048]
+INFO     2022-11-21 18:12:32.926 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:12:32.927 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:12:32.927 | uvicorn.server:serve | Finished server process [20047]
+INFO     2022-11-21 18:12:33.709 | uvicorn.server:serve | Started server process [20072]
+INFO     2022-11-21 18:12:33.710 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:12:33.710 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:12:33.765 | uvicorn.server:serve | Started server process [20073]
+INFO     2022-11-21 18:12:33.765 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:12:33.766 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:12:50.044 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:12:50.146 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:12:50.149 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:12:50.150 | uvicorn.server:serve | Finished server process [20073]
+INFO     2022-11-21 18:16:27.335 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:16:27.436 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:16:27.439 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:16:27.440 | uvicorn.server:serve | Finished server process [20072]
+INFO     2022-11-21 18:16:27.981 | uvicorn.server:serve | Started server process [20162]
+INFO     2022-11-21 18:16:27.982 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:16:27.982 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:19:25.517 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:19:25.618 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:19:25.620 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:19:25.621 | uvicorn.server:serve | Finished server process [20162]
+INFO     2022-11-21 18:19:26.142 | uvicorn.server:serve | Started server process [20259]
+INFO     2022-11-21 18:19:26.143 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:19:26.143 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:21:36.865 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:21:36.965 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:21:36.966 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:21:36.967 | uvicorn.server:serve | Finished server process [20259]
+INFO     2022-11-21 18:21:37.749 | uvicorn.server:serve | Started server process [20335]
+INFO     2022-11-21 18:21:37.749 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:21:37.750 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:22:36.023 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:22:36.125 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:22:36.126 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:22:36.126 | uvicorn.server:serve | Finished server process [20335]
+INFO     2022-11-21 18:22:36.650 | uvicorn.server:serve | Started server process [20369]
+INFO     2022-11-21 18:22:36.650 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:22:36.650 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:22:47.503 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:22:47.603 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:22:47.604 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:22:47.605 | uvicorn.server:serve | Finished server process [20369]
+INFO     2022-11-21 18:22:48.473 | uvicorn.server:serve | Started server process [20381]
+INFO     2022-11-21 18:22:48.474 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:22:48.474 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:28:31.621 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:28:31.722 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:28:31.723 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:28:31.723 | uvicorn.server:serve | Finished server process [20381]
+INFO     2022-11-21 18:28:32.397 | uvicorn.server:serve | Started server process [21834]
+INFO     2022-11-21 18:28:32.398 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:28:32.398 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:29:14.677 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:29:14.778 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:29:14.779 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:29:14.779 | uvicorn.server:serve | Finished server process [21834]
+INFO     2022-11-21 18:29:15.595 | uvicorn.server:serve | Started server process [21857]
+INFO     2022-11-21 18:29:15.596 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:29:15.596 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:29:50.458 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:29:50.559 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:29:50.559 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:29:50.560 | uvicorn.server:serve | Finished server process [21857]
+INFO     2022-11-21 18:29:51.316 | uvicorn.server:serve | Started server process [21878]
+INFO     2022-11-21 18:29:51.317 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:29:51.317 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:32:13.574 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:32:13.675 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:32:13.676 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:32:13.676 | uvicorn.server:serve | Finished server process [21878]
+ERROR    2022-11-21 18:32:14.598 | inventory.database:<module> | Unable to connect to database : 'Settings' object has no attribute 'inventory_database_hostname'
+ERROR    2022-11-21 18:33:12.302 | inventory.database:<module> | Unable to connect to database : 'Settings' object has no attribute 'inventory_redis_port'
+INFO     2022-11-21 18:34:25.588 | uvicorn.server:serve | Started server process [22031]
+INFO     2022-11-21 18:34:25.589 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:34:25.589 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:34:54.039 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:34:54.140 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:34:54.141 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:34:54.141 | uvicorn.server:serve | Finished server process [22031]
+INFO     2022-11-21 18:34:54.748 | uvicorn.server:serve | Started server process [22052]
+INFO     2022-11-21 18:34:54.748 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:34:54.748 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:37:06.897 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:37:06.998 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:37:06.999 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:37:06.999 | uvicorn.server:serve | Finished server process [22052]
+INFO     2022-11-21 18:37:07.877 | uvicorn.server:serve | Started server process [22114]
+INFO     2022-11-21 18:37:07.877 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:37:07.878 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:37:47.151 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:37:47.252 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:37:47.253 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:37:47.253 | uvicorn.server:serve | Finished server process [22114]
+INFO     2022-11-21 18:37:47.909 | uvicorn.server:serve | Started server process [22135]
+INFO     2022-11-21 18:37:47.910 | uvicorn.lifespan.on:startup | Waiting for application startup.
+INFO     2022-11-21 18:37:47.911 | uvicorn.lifespan.on:startup | Application startup complete.
+INFO     2022-11-21 18:37:50.314 | uvicorn.server:shutdown | Shutting down
+INFO     2022-11-21 18:37:50.415 | uvicorn.lifespan.on:shutdown | Waiting for application shutdown.
+INFO     2022-11-21 18:37:50.416 | uvicorn.lifespan.on:shutdown | Application shutdown complete.
+INFO     2022-11-21 18:37:50.416 | uvicorn.server:serve | Finished server process [22135]
